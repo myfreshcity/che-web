@@ -8,7 +8,7 @@
       <span v-if="count">{{count}}</span>
     </router-link>
     <span class="footer-addcar" @click="addIntoCar">
-      加入购物车
+      加入清单
     </span>
   </footer>
 </template>

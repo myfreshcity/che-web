@@ -8,11 +8,11 @@
     </mt-tab-item>
     <mt-tab-item id="分类页">
       <i slot="icon" class="icon-category"></i>
-      分类
+      找车
     </mt-tab-item>
     <mt-tab-item id="购物车页">
       <i slot="icon" class="icon-car"></i>
-      购物车
+      清单
     </mt-tab-item>
     <mt-tab-item id="用户页">
       <i slot="icon" class="icon-user"></i>

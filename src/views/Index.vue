@@ -7,7 +7,6 @@
     <v-section1 :section1="datas.section1"></v-section1>
     <v-section2 :section2="datas.section2"></v-section2>
     <v-section3></v-section3>
-    <v-section4 :section4="datas.section4"></v-section4>
     <v-baseline></v-baseline>
     <v-footer></v-footer>
   </div>

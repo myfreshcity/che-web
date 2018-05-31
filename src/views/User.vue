@@ -19,15 +19,15 @@
           <section class="my-pay">
               <router-link :to="{ name: ''}">
                   <span class="icon2-money"></span>
-                  <p>代付款</p>
+                  <p>待付款</p>
               </router-link>
               <router-link :to="{ name: ''}">
                   <span class="icon2-thecar"></span>
-                  <p>待收货</p>
+                  <p>运输中</p>
               </router-link>
               <router-link :to="{ name: ''}">
                   <span class="icon2-fixed"></span>
-                  <p>退换修</p>
+                  <p>待确认</p>
               </router-link>
 
           </section>
@@ -53,36 +53,14 @@
             </router-link>
           </section>
 
-          <section class="my-service">
-              <router-link class="my-service-top" :to="{ name: ''}">
-                  <div>
-                    <span class="icon2-service">
-                        <span class="path1"></span><span class="path2"></span><span class="path3"></span>
-                    </span>
-                  </div>
-                  <p>
-                    <span>服务中心</span><i class="icon-go"></i>
-                  </p>
-              </router-link>
-              <router-link class="my-service-bottom" :to="{ name: ''}">
-                  <div>
-                    <span class="icon2-milogo"></span>
-                  </div>
-                  <p>
-                    <span>电商之家</span><i class="icon-go"></i>
-                  </p>
-              </router-link>
-          </section>
-
           <section class="my-settle">
               <router-link :to="{ name: ''}" class="my-settle-top">
                   <div>
                     <span class="icon2-f"></span>
-
                   </div>
 
                   <p>
-                    <span>F码通道</span><i class="icon-go"></i>
+                    <span>我的推广</span><i class="icon-go"></i>
                   </p>
               </router-link>
               <router-link :to="{ name: ''}" class="my-settle-bottom">

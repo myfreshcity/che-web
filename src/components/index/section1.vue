@@ -1,7 +1,7 @@
 <template lang="html">
   <section class="section1" v-if='section1'>
     <h1 class="section1-title">
-      section1
+      推荐车型
       <i class="icon-right"></i>
     </h1>
     <ul class="section1-list">

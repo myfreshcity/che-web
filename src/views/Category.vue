@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="wrap">
     <v-header class="header">
-      <h1 slot="title">商品分类</h1>
+      <h1 slot="title">找车</h1>
     </v-header>
     <section class="view">
       <v-aside :datas="allData"></v-aside>

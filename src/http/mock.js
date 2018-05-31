@@ -18,7 +18,7 @@ var index = Mock.mock('http://api.com/index', {
       'imgPath':Random.image('400x400', '#b7ddf2', '#333', 'png', ''),
       'id':'@id'
     }],
-    'banner':Random.image('400x100', '#ffcc33', '#FFF', 'png', 's1-banner')
+    'banner':Random.image('400x100', '#ffcc33', '#FFF', 'png', '')
   },
   'section2|10':{
     'list|10':[{
@@ -28,7 +28,7 @@ var index = Mock.mock('http://api.com/index', {
         'imgPath':Random.image('200x200', '#dec4e0', '#333', 'png', ''),
         'id':'@id'
       }],
-      'banner':Random.image('400x100', '#b97cc9', '#FFF', 'png', 's2-banner')
+      'banner':Random.image('400x100', '#b97cc9', '#FFF', 'png', '')
   },
 
 
@@ -43,7 +43,7 @@ var index = Mock.mock('http://api.com/index', {
         'end|1':['2017/09/23 02:00:00','2017/09/23 11:00:00','2017/09/23 14:00:00','2017/09/23 13:00:00'],
       }],
 
-      'banner':Random.image('400x100', '#30f673', '#FFF', 'png', 's3-banner'),
+      'banner':Random.image('400x100', '#30f673', '#FFF', 'png', ''),
 
   },
 
@@ -63,14 +63,14 @@ var index = Mock.mock('http://api.com/index', {
 
 var detail = Mock.mock('http://api.com/detail', {
   "view|1": [{
-    'title|1': ['一加手机5 (A5000) 全网通  移动联通电信4G手机','三星 Galaxy S8 移动联通电信4G手机 ','荣耀9 全网通 标配版 4GB+64GB 移动联通电信4G手机 ','OPPO R11 全网通 手机','小米6 全网通 6GB+128GB 陶瓷尊享版 移动联通电信4G手机 ','新诺基亚（NOKIA）105 移动联通2G手机 老人手机','小辣椒 红辣椒4A 标准版  全网通 移动联通电信4G手机 ','锤子 坚果Pro 全网通 移动联通电信4G手机 ','360手机 N5 全网通 移动联通电信4G手机 ','乐视 S3 爵迹版  移动联通电信4G手机 '
+    'title|1': ['奥迪A3 2018款 30周年年型 Sportback 35 TFSI 进取型','奥迪A4L 2018款 30周年年型 30 TFSI 进取型 ','阿斯顿·马丁DB11 2019款 4.0T V8 Coupe ','Stelvio 2017款 2.0T 280HP 豪华版','奔驰C级 2018款 C 200 运动版 ','奔驰GLE 2018款 GLE 300 d 4MATIC','思域 2016款 220TURBO CVT尊耀版 ','哥瑞 2016款 1.5L CVT经典版 ','思铂睿 2017款 2.0L 经典版 ','艾力绅 2016款 2.4L 经典版 '
     ],
-    'intro':  Random.cparagraph(2),
+    'intro':  '经典豪车，不容错过',
     'id':'@id',
-    'price|99-1000':100,
+    'price|50000-200000':100,
     'chose|3':[{
-      'col|+1':['土豪金','东北银','喜庆红'],
-      'size|+1':['128g','64g','32g']
+      'col|+1':['黑','银','白'],
+      'size|+1':['2016款','2017款','2018款']
     }]
   }],
 
@@ -86,9 +86,9 @@ var detail = Mock.mock('http://api.com/detail', {
  
 var category = Mock.mock('http://api.com/category', {
     'aside|14':[{
-      'title':'@cname',
+      'title|1':['奥迪','阿斯顿·马丁','奔腾','宝沃','保斐利','长城','东风','法拉利'],
       'list|60':[{
-        'title':'@last',
+        'title|1':['奥迪A3','奥迪A6','奔驰GLA AMG','本田WR-V','元素','宝马1系'],
         'imgPath':Random.image('2000x2000','#5169b4','#FFF','png',''),
 
       }]

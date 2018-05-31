@@ -5,12 +5,11 @@
       <h1 slot="title">支付订单</h1>
     </v-header>
 
-    <div class="pay-address">
-      <div>
-        <p class="main-address-per">收货人:<span>王先生</span></p>
-        <p class="main-address-tel">15985698749</p>
-      </div>
-      <p>收货地址:<span>河南省郑州市中原区秦岭路8号院59号单元28层15号东户第三家</span></p>
+    <div class="pay-address" v-if="!confirm">
+      <mt-switch v-model="user_type">是否为个人</mt-switch>
+      <mt-field label="联系人" placeholder="请输入联系人" v-model="user_name"></mt-field>
+      <mt-field label="联系方式" placeholder="请输入联系人" v-model="contact"></mt-field>
+      <mt-field label="备注" placeholder="备注" v-model="t_remark"></mt-field>
     </div>
 
     <div class="pay-product">
@@ -29,8 +28,7 @@
       <!-- 支付成功后的提示 -->
       <div class="pay-confirm" v-else>
         支付成功!!!</br>
-        当页面数据清空</br>
-        购物车列表重新设置
+        </br>
       </div>
     </div>
     <h3 class="pay-allpay">总需要支付 : <i>￥</i><span>{{allpay}}</span></h3>
@@ -46,7 +44,7 @@
 import Util from '../../../util/common'
 import Header from '@/common/_header.vue'
 import {
-  MessageBox
+  MessageBox,Toast
 } from 'mint-ui';
 export default {
   components: {
@@ -54,6 +52,10 @@ export default {
   },
   data() {
     return {
+      user_type: false,
+      user_name:'',
+      contact:'',
+      t_remark:'',
       confirm: ''
     }
   },
@@ -101,7 +103,7 @@ export default {
             //点击取消执行这里的函数
           });
       } else { //提交了订单,数据清空
-        alert('请勿重复提交订单')
+        Toast('请勿重复提交订单')
       }
 
     }

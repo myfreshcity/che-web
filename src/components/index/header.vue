@@ -1,6 +1,6 @@
 <template lang="html">
 
-  <mt-header title="电商联盟">
+  <mt-header title="车商联盟">
 
   <router-link :to="{name:''}" slot="right">
     <mt-button icon="search"></mt-button>

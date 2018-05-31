@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="login">
     <v-header>
-      <h1 slot="title">登录页</h1>
+      <h1 slot="title">登录</h1>
     </v-header>
     <section>
       <mt-field
@@ -20,7 +20,6 @@
        :readonly='!toggle'
        :disableClear = '!toggle'
         ></mt-field>
-      <p class="tip">Tip : 账号密码随便输</p>
     </section>
     <mt-button
      plain
@@ -54,7 +53,7 @@ export default {
     // 登录按钮
     login(){
       if(this.account!=="" && this.password!=="") {
-        Toast('登录成功,存储token,跳转网页');
+        Toast('登录成功');
         this.toggle = false;
         this.$store.commit('CHANGE_TOKEN',1);
       }else {
@@ -71,7 +70,7 @@ export default {
 
     //退出登录按钮
     logout(){
-      Toast('退出登录成功,清除token');
+      Toast('已退出登录');
       this.$store.commit('CHANGE_TOKEN',0);
       this.toggle = true;
       this.account = '';

@@ -6,17 +6,17 @@
       <p><span>{{allpay}} </span>元</p>
     </div>
     <router-link :to="{ name: '分类页'}" class="footer-goon" >
-      继续购物
+      继续浏览
     </router-link>
     <a class="footer-pay" @click="goPay">
-      去结算
+      去支付
     </a>
   </footer>
 
 </template>
 
 <script>
-
+import { Toast } from 'mint-ui'
 export default {
   computed:{
     // 勾选的商品数量
@@ -54,15 +54,18 @@ export default {
     goPay(){
 
         // 如果有选择商品才能跳转
+      if(this.$store.getters.selectedList){
         if(this.$store.getters.selectedList.length) {
           // 保存+缓存选择的商品 ,在支付页能用到
           this.$store.dispatch('setSelectedList')
           this.$router.push({name:'支付页'})
 
-
+        }else{
+          Toast('你还没选择商品')
+        }
       } else {
 
-        alert('你还没选择商品')
+          Toast('清单还是空的')
 
       }
 

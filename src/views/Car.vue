@@ -3,7 +3,7 @@
     <div class="car">
       <!-- slot分发内容 让子组件混合父组件的内容 -->
       <v-header>
-        <h1 slot="title">购物车</h1>
+        <h1 slot="title">预定清单</h1>
       </v-header>
       <!-- 根据购物车是否有商品加载不同的组件 -->
       <v-something v-if="count"></v-something>

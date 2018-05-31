@@ -7,7 +7,7 @@
       <img src="../../assets/car/images/cart.svg" alt="">
     </div>
     <router-link class="nothing-toshop" :to="{name:'分类页'}">
-      <p>购物车是空的</p>
+      <p>清单是空的</p>
       <router-link :to="{ name: '分类页', params: {} }">去逛逛</router-link>
     </router-link>
   </div>

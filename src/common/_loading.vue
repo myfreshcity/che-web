@@ -4,7 +4,7 @@
       <div class="double-bounce1"></div>
       <div class="double-bounce2"></div>
     </div>
-    <p>正在拼命加载中.....</p>
+    <p>加载中...</p>
   </div>
 </template>
 
