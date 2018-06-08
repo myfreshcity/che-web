@@ -6,7 +6,7 @@
    <div>
    <ul>
       <li v-for="k in content">
-        <mt-cell :title="k.full_name" :label="(k.offset_price/10000).toFixed(2)" :to="{path:'/detail/'+k.id}" is-link ></mt-cell>
+        <mt-cell :title="k.full_name" :label="'降 ' +(k.offset_price/10000).toFixed(2)+'万'" :to="{path:'/detail/'+k.id}" is-link ></mt-cell>
       </li>
     </ul>
   </div>

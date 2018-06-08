@@ -11,7 +11,7 @@
         </router-link>
       </li>
     </ul>
-  <router-link :to="{ path:'/detail/1'}"  class="section1-banner">
+  <router-link :to="{ path:'/'}"  class="section1-banner">
     <img v-lazy="section1.banner" v-if='section1'>
   </router-link>
   </section>

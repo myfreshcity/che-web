@@ -20,7 +20,6 @@ import Section3 from '@/components/index/section3.vue'
 import Section4 from '@/components/index/section4.vue'
 import Baseline from '@/common/_baseline.vue'
 import Footer from '@/common/_footer.vue'
-import index from '@/http/mock.js' //模拟数据
 export default {
   components: {
     'v-header': Header,
@@ -45,7 +44,7 @@ export default {
       method: 'post',
       url: '/index'
     }).then((response) => {
-      this.datas = response.data;
+      this.datas = response.data.result;
     }).catch(function(error) {
       alert(error)
     })
