@@ -2,9 +2,9 @@
   <div class="main" v-if="datas">
     <h2>{{datas.aside[tabIndex].title}}</h2>
     <ul>
-      <li v-for="k in datas.aside[tabIndex].list">
-        <router-link :to="{name:'详情页'}">
-          <img v-lazy="k.imgPath"><span>{{k.title}}</span>
+      <li v-for="(k,i) in datas.aside[tabIndex].list" style="width: 100%;" @click='changeIndex(i)'>
+        <router-link :to="{name:'车型列表页'}">
+          <img v-lazy="k.img_url" style="width: 98%;"><span>{{k.full_name}}</span>
         </router-link>
       </li>
     </ul>
@@ -19,6 +19,11 @@ export default {
     // 获取当前aside栏选择的是第几个
     tabIndex(){
       return this.$store.state.category.tabIndex
+    }
+  },
+  methods:{
+    changeIndex(i) {
+      this.$store.commit('SET_ITEMS',this.datas.aside[this.tabIndex].list[i].cars)
     }
   }
 }

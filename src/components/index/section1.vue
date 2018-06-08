@@ -6,12 +6,12 @@
     </h1>
     <ul class="section1-list">
       <li v-for="k in section1.list">
-        <router-link :to="{name:'详情页'}" :key="k.id">
+        <router-link :to="{path:'/detail/'+k.id}" :key="k.id">
           <img v-lazy="k.imgPath" alt="">
         </router-link>
       </li>
     </ul>
-  <router-link :to="{ name: '详情页'}"  class="section1-banner">
+  <router-link :to="{ path:'/detail/1'}"  class="section1-banner">
     <img v-lazy="section1.banner" v-if='section1'>
   </router-link>
   </section>

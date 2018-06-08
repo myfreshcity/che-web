@@ -4,6 +4,7 @@ import Vue from 'vue'
 
 // 容器
 const state = {
+  itemDatas:[], //当前车型列表
   productDatas:'',  //detail父组件请求的当前页面商品数据
   colSelected:0,   //0是index,表示第一个
   sizeSelected:0,  //0是index,表示第一个
@@ -25,6 +26,10 @@ const state = {
 */
 const mutations = {
 
+
+    [types.SET_ITEMS](state,res) {
+  state.itemDatas = res
+  },
 
 //异步请求的数据
   [types.SET_DATAS](state,res) {
@@ -84,13 +89,24 @@ let vm = new Vue({});
 // action提交mutations，不直接更改状态（通过store.dispatch触发）
 const actions = {
 
+  // 父组件发送异步请求
+  setItems({commit}) {
+    vm.$api({
+      method:'post',
+      url:"/items"
+    }).then(response=>{
+      commit('SET_ITEMS',response.data);
+    })
+  },
+
 // 父组件发送异步请求
-  setDatas({commit}) {
+  setDatas({commit},cid) {
     vm.$api({
         method:'post',
+        data:{cid:cid},
         url:"/detail"
       }).then(response=>{
-        commit('SET_DATAS',response.data);
+        commit('SET_DATAS',response.data.car);
       })
   },
 

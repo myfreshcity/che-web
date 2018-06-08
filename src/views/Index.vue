@@ -5,8 +5,6 @@
     <v-swiper :swiperData="datas.swiper"></v-swiper>
     <v-service></v-service>
     <v-section1 :section1="datas.section1"></v-section1>
-    <v-section2 :section2="datas.section2"></v-section2>
-    <v-section3></v-section3>
     <v-baseline></v-baseline>
     <v-footer></v-footer>
   </div>

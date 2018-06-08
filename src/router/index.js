@@ -6,6 +6,7 @@ Vue.use(Router);
 const Index = resolve => require(['@/views/Index.vue'], resolve)
 const Category = resolve => require(['@/views/Category.vue'], resolve)
 const CategoryMain = resolve => require(['@/components/category/main.vue'], resolve)
+const Goods = resolve => require(['@/views/Goods.vue'],resolve)
 const Car = resolve => require(['@/views/Car.vue'],resolve)
 const User = resolve => require(['@/views/User.vue'], resolve)
 const Detail = resolve => require(['@/views/Detail.vue'], resolve)
@@ -29,6 +30,10 @@ export default new Router({
         component:CategoryMain
       }]
     }, {
+    path: '/goods',
+    name: '车型列表页',
+    component: Goods
+    },{
       path: '/car',
       name: '购物车页',
       component: Car
@@ -45,7 +50,7 @@ export default new Router({
            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录才能进入的
        },
     }, {
-      path: '/detail',
+      path: '/detail/:cid',
       name: '详情页',
       component: Detail
     }, {

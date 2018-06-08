@@ -3,7 +3,7 @@
     <div class="section2-list">
       <ul>
         <li v-for="k in section2.list" :key="k.id">
-          <router-link :to="{name:'详情页'}">
+          <router-link :to="{path:'/detail/1'}">
             <img v-lazy="k.imgPath">
           </router-link>
           <h2 class="section2-list-title ac">
@@ -18,7 +18,7 @@
         </li>
       </ul>
     </div>
-    <router-link class="section2-banner" :to="{name:'详情页'}">
+    <router-link class="section2-banner" :to="{path:'/detail/1'}">
       <img v-lazy="section2.banner">
     </router-link>
   </section>

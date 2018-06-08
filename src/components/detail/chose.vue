@@ -1,15 +1,19 @@
 <template lang="html">
   <section class="chose" v-if="view">
     <div class="chose-view">
-      <h1 class="chose-view-title">
+      <h1 class="chose-view-title" style="margin-bottom: .5rem;">
         {{view.title}}
         <span style="display:none;">(已选 {{colText}} - {{sizeText}})</span>
       </h1>
-      <span>{{view.price}}元</span>
-      <p class="chose-view-intro">{{view.intro}}</p>
+      <p>指导价 {{(view.guid_price/10000).toFixed(2)}}万元</p>
+      <p>售价 {{acutalPrice(view.guid_price,view.offset_price)}}万元</p>
+      <p>降价 {{(view.offset_price/10000).toFixed(2)}}万元</p>
+      <p>定金 {{view.price}}元</p>
+      <p>车源地 {{view.location}}</p>
+      <p class="chose-view-intro">备注 {{view.remark}}</p>
     </div>
   <!-- 添加空函数 解决Safari浏览器 :active无效 -->
-    <div class="chose-mychosed" ontouchstart="">
+    <div class="chose-mychosed" ontouchstart="" style="display:none;">
       <div class="colChose">
         <span
            v-for="(k,i) in view.chose"
@@ -58,11 +62,12 @@ export default {
     // 返回当前选择规格的值(innerText)
     sizeText() {
       return this.view.chose[this.sizeSelected].size
-    }
-
+    },
   }),
   methods: {
-
+    acutalPrice(p1, p2){
+      return ((p1 - p2)/10000).toFixed(2)
+    },
     //点击后把i赋值给colSelected,再通过判断决定是否添加选中样式 (active)
     colChose(i) {
       this.$store.commit('CHANGE_COL_SELECTED', i);

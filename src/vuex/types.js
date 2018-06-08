@@ -1,5 +1,9 @@
 /* Detail + Car*/
 
+//车型列表数据
+
+export const SET_ITEMS = 'SET_ITEMS'
+
 //Detail父组件中 当前页面商品的数据
 
 export const SET_DATAS = 'SET_DATAS'
