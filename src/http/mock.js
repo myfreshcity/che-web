@@ -65,4 +65,3 @@ var items = Mock.mock('http://localhost:1322/api/items', {
   'title|10':['奥迪A3','奥迪A6','奔驰GLA AMG','本田WR-V','元素','宝马1系']
 });
  
-export {index,items}

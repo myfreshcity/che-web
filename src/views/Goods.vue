@@ -16,7 +16,6 @@
 <script>
 import { Lazyload,Cell } from 'mint-ui'
 import Header from '@/common/_header.vue'
-import items from '@/http/mock.js' //模拟数据
 export default {
   components:{
     'v-header':Header

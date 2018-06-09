@@ -5,7 +5,7 @@
           <div class="header-icon">
               <span class="icon2-user"></span>
           </div>
-          <span>登录/注册</span>
+          <span @click="logout">退出登录</span>
       </header>
       <div class="main">
           <router-link class="my-indent" :to="{ name: ''}">
@@ -84,10 +84,31 @@
 
   import Baseline from '@/common/_baseline.vue'
   import Footer from '@/common/_footer.vue'
+  import { Toast } from 'mint-ui'
   export default {
     components: {
       'v-baseline': Baseline,
       'v-footer': Footer
+    },
+    methods:{
+      logout(){
+        this.$api({
+          method:'get',
+          url:'/logout'
+        }).then((response) => {
+          Toast('已退出登录');
+          this.$store.commit('CHANGE_TOKEN',0);
+
+          setTimeout(()=>{
+            this.$router.replace({
+              path: 'login'
+            })
+          },1000)
+        }).catch((response) => {
+          // 响应错误回调
+          Toast('Logout出错了！ ' + JSON.stringify(response))
+        });
+      }
     }
   }
 </script>
