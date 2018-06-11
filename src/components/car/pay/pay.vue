@@ -27,13 +27,18 @@
 
       <!-- 支付成功后的提示 -->
       <div class="pay-confirm" v-else>
-        支付成功!!!</br>
+        支付已成功完成</br>
         </br>
       </div>
     </div>
-    <h3 class="pay-allpay">总需要支付 : <i>￥</i><span>{{allpay}}</span></h3>
-    <footer class="pay-footer" ontouchstrat="" @click="payConfirm">
+    <h3 class="pay-allpay" v-if="!confirm">总需要支付 : <i>￥</i><span>{{allpay}}</span></h3>
+
+    <footer class="pay-footer" ontouchstrat="" @click="payConfirm" v-if="!confirm">
       <span>立即支付</span>
+    </footer>
+
+    <footer class="pay-footer" ontouchstrat="" @click="forwardCar" v-else>
+      <span>返回</span>
     </footer>
 
 
@@ -56,7 +61,7 @@ export default {
       user_name:'',
       contact:'',
       t_remark:'',
-      confirm: ''
+      confirm: false
     }
   },
   mounted() {
@@ -65,11 +70,28 @@ export default {
       this.$store.commit('SET_SELECTEDLIST')
     }
   },
+  beforeRouteUpdate (to, from, next) {
+    console.log('路由发生改变，很有可能是小程序的支付成功回调')
+    let payResult = to.query.payResult
+    if (payResult) { // 小程序支付成功
+      if (payResult === '1') {
+        console.log('支付成功')
+        this.confirm = false;
+        this.$store.commit('SET_LOADING', true);
+        this.$store.dispatch('resetCarList'); //重置购物车（用unSelectedList替换）
+        this.$store.dispatch('resetCount'); //重置购物车数量
+        setTimeout(() => {
+          this.$store.commit('SET_LOADING', false); //关闭loading
+          this.confirm = true; //支付完成后切换视图
+        }, 300)
+      }
+    }
+    next()
+  },
   computed: {
 
     //所有商品列表
     carList() {
-
       return this.$store.state.detail.selectedList
     },
 
@@ -90,15 +112,10 @@ export default {
           .confirm(
             `确定支付${this.allpay}元`
           )
-          .then(action => { //点击成功执行这里的函数
-            this.confirm = false;
-            this.$store.commit('SET_LOADING', true);
-            this.$store.dispatch('resetCarList'); //重置购物车（用unSelectedList替换）
-            this.$store.dispatch('resetCount'); //重置购物车数量
-            setTimeout(() => {
-              this.$store.commit('SET_LOADING', false); //关闭loading
-              this.confirm = true; //支付完成后切换视图
-            }, 300)
+          .then(action => {
+              //点击成功执行这里的函数
+              this.pay()
+
           }, function(err) {
             //点击取消执行这里的函数
           });
@@ -106,7 +123,25 @@ export default {
         Toast('请勿重复提交订单')
       }
 
+    },
+    pay(){
+      let isWxMini = window.__wxjs_environment === 'miniprogram'
+      if(isWxMini){
+        let jumpUrl = encodeURIComponent(window.location)
+
+        let path = '/pages/wxpay/wxpay?total_fee='+this.allpay
+        window.wx.miniProgram.navigateTo({
+          url: path
+        })
+      }
+
+    },
+    forwardCar(){
+      this.$router.replace({
+        path: '/car'
+      })
     }
+
   }
 
 }
