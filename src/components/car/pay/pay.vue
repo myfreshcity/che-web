@@ -6,10 +6,10 @@
     </v-header>
 
     <div class="pay-address" v-if="!confirm">
-      <mt-switch v-model="user_type">是否为个人</mt-switch>
-      <mt-field label="联系人" placeholder="请输入联系人" v-model="user_name"></mt-field>
-      <mt-field label="联系方式" placeholder="请输入联系人" v-model="contact"></mt-field>
-      <mt-field label="备注" placeholder="备注" v-model="t_remark"></mt-field>
+      <mt-switch v-model="payForm.user_type">是否为个人</mt-switch>
+      <mt-field label="联系人" placeholder="请输入联系人" v-model="payForm.user_name"></mt-field>
+      <mt-field label="联系方式" placeholder="服务凭据，请正确填写" v-model="payForm.contact"></mt-field>
+      <mt-field label="备注" placeholder="备注" v-model="payForm.t_remark"></mt-field>
     </div>
 
     <div class="pay-product">
@@ -57,11 +57,13 @@ export default {
   },
   data() {
     return {
-      user_type: false,
-      user_name:'',
-      contact:'',
-      t_remark:'',
-      confirm: false
+      confirm: false,
+      payForm:{
+          user_type: false,
+          user_name:'',
+          contact:'',
+          t_remark:'',
+      }
     }
   },
   mounted() {
@@ -107,6 +109,11 @@ export default {
 
   methods: {
     payConfirm() {
+      if(!this.validation()){
+        Toast('无效的填写信息')
+        return
+      }
+
       if (this.carList) { //还未提交了订单,数据还未清空
         MessageBox
           .confirm(
@@ -124,15 +131,34 @@ export default {
       }
 
     },
+    validation() {
+      var patt1 = /^[1][3,4,5,7,8,9]\d{9}$/;
+      var patt2 = /^[\u4E00-\u9FA5]{2,5}(?:·[\u4E00-\u9FA5]{2,5})*$/;
+      return ((patt1.test(this.payForm.contact)) && patt2.test(this.payForm.user_name))
+    },
     pay(){
+
       let isWxMini = window.__wxjs_environment === 'miniprogram'
       if(isWxMini){
-        let jumpUrl = encodeURIComponent(window.location)
-
-        let path = '/pages/wxpay/wxpay?total_fee='+this.allpay
-        window.wx.miniProgram.navigateTo({
-          url: path
+        this.$api({
+          method: 'post',
+          url: '/wxpay/prepay',
+          data:{
+            total_fee: this.allpay,
+            pay_form: this.payForm,
+            car_list: this.carList,
+          },
+        }).then((response) => {
+          let order = response.data.result
+          let path = '/pages/wxpay/wxpay?total_fee='+order.pay_amt+'&order_id='+order.id
+          window.wx.miniProgram.navigateTo({
+            url: path
+          })
+        }).catch(function(error) {
+          alert(error)
         })
+
+
       }
 
     },

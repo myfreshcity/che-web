@@ -14,6 +14,7 @@ const Search = resolve => require(['@/views/Search.vue'], resolve)
 const Pay = resolve => require(['@/components/car/pay/pay.vue'], resolve)
 const Login = resolve => require(['@/views/login.vue'], resolve)
 const Register = resolve => require(['@/views/Register.vue'], resolve)
+const Orders = resolve => require(['@/views/Orders.vue'], resolve)
 
 
 export default new Router({
@@ -66,6 +67,10 @@ export default new Router({
       path: '/register',
       name: '注册页',
       component: Register
+    },{
+      path: '/orders',
+      name: '订单列表页',
+      component: Orders
     }
   ]
 })

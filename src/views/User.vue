@@ -11,8 +11,10 @@
           <router-link class="my-indent" :to="{ name: ''}">
               <span class="my-indent-left">我的订单</span>
               <div class="my-indent-right">
+              <router-link :to="{ path: '/orders'}">
                   <span>全部订单</span>
                   <i class="icon-go"></i>
+              </router-link>
               </div>
           </router-link>
 
