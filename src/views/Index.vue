@@ -39,9 +39,16 @@ export default {
     }
   },
   beforeCreate() {
-
+    let isWxMini = window.__wxjs_environment === 'miniprogram'
+    let openid = ''
+    if(isWxMini){
+      openid =  this.$route.query.openid
+    }
     this.$api({
       method: 'post',
+      data:{
+          oid: openid
+      },
       url: '/index'
     }).then((response) => {
       this.datas = response.data.result;

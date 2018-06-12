@@ -9,10 +9,11 @@
       <ul>
         <li v-for="k in carList">
           <a>
-            <img :src="k.imgPath" alt="">
             <div>
-              <h2>{{k.title}} -</h2>
-              <p>{{k.price}} 元</p>
+              <h2>{{k.contact_person}} | {{k.contact_way}}</h2>
+              <p>支付金额 {{k.pay_amt}} 元</p>
+              <p>支付时间 {{k.pay_time}}</p>
+              <p>备注 {{k.remark}}</p>
             </div>
           </a>
         </li>
@@ -20,9 +21,6 @@
 
     </div>
 
-    <footer class="pay-footer" ontouchstrat="" @click="forwardHome">
-      <span>返回</span>
-    </footer>
 
 
   </div>
@@ -48,7 +46,7 @@ export default {
       method:'get',
       url:'/orders'
     }).then((res)=>{
-      this.carList = res.data;
+      this.carList = res.data.result;
     }).catch((error)=>{
       console.log(error);
     })
@@ -101,7 +99,6 @@ export default {
     }
     .pay-product {
         background-color: #fff;
-        height: 60vw;
         overflow: auto;
 
         li {
@@ -124,7 +121,7 @@ export default {
                 > div {
                     box-sizing: border-box;
                     padding-left: 50*10vw/75;
-                    width: 70%;
+                    width: 98%;
                     h2 {
                         padding-top: 0.09*10vw;
                         overflow: hidden;
@@ -136,7 +133,7 @@ export default {
                     p {
                         text-align: right;
                         .fz(font-size,24px);
-                        padding-top: 1.4*10vw;
+                        padding-top: 1vw;
                     }
                 }
             }
