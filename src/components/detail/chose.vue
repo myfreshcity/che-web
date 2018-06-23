@@ -6,6 +6,7 @@
         <span style="display:none;">(已选 {{colText}} - {{sizeText}})</span>
       </h1>
       <p>指导价 {{(view.guid_price/10000).toFixed(2)}}万元</p>
+      <p>经销商 {{view.user_name}}</p>
       <p>售价 {{acutalPrice(view.guid_price,view.offset_price)}}万元</p>
       <p>降价 {{(view.offset_price/10000).toFixed(2)}}万元</p>
       <p>定金 {{view.price}}元</p>
